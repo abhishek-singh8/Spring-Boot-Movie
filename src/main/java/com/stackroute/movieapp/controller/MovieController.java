@@ -33,10 +33,10 @@ public class MovieController {
 	Environment env;
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
     MovieService movieService;
-    @Autowired
-    MovieController(MovieService movieService){
-    	this.movieService=movieService;
-    }
+//    @Autowired
+//    MovieController(MovieService movieService){
+//    	this.movieService=movieService;
+//    }
     @RequestMapping(value = "/home" , method = RequestMethod.GET)
 	public String displayRestaurant() {
 		return "Hello";

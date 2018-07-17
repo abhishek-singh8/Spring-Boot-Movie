@@ -27,7 +27,7 @@ public class MovieControllerTest {
     }
     @Test
     public void displayMovie() throws Exception{
-        movieMockMvc.perform(get("/home"))
+        movieMockMvc.perform(get("/api/v1/home"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("Hello"));
     }
