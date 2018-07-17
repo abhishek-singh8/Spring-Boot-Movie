@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,6 +28,8 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping("api/v1")
 public class MovieController {
+	@Autowired
+	Environment env;
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
     MovieService movieService;
     @Autowired
@@ -40,8 +43,9 @@ public class MovieController {
     		    logger.debug("This is a debug message");
     	        logger.info("This is an info message");
     	        logger.warn("This is a warn message");
-    	        
-    		
+    	    
+    	        //Environment variable property//
+    		    System.out.println( env.getProperty("com.stackroute.username"));
 		    	movieService.saveMovie(movie);
 		    	return new ResponseEntity<Movie> (movie,HttpStatus.CREATED);
 		    }

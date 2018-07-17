@@ -6,5 +6,5 @@ logging:
    file: "%d %-5level [%thread] %logger : %msg%n"
  level:
    org.springframework.web: DEBUG
-   com.stackroute.controllers: DEBUG
+   com.stackroute.movieapp.controller: DEBUG
    org.hibernate: DEBUG
