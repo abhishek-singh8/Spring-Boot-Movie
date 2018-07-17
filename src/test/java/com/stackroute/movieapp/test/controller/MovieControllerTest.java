@@ -26,9 +26,9 @@ public class MovieControllerTest {
         MockitoAnnotations.initMocks(this);
     }
     @Test
-    public void displayRestaurant() throws Exception{
+    public void displayMovie() throws Exception{
         movieMockMvc.perform(get("/home"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("Hello"));
+                .andExpect(content().string("Hiii"));
     }
 }
