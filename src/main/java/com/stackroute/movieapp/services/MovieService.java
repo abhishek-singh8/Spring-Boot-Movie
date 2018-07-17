@@ -14,5 +14,5 @@ public interface MovieService {
 	public void deleteMovie(int id) throws MovieNotFoundException;
 	public Movie updateMovie(Movie movie,int id) throws MovieNotFoundException;
 	public Optional<Movie> getMovieById(int id) throws MovieNotFoundException;
-	public Iterable<Movie> getMovieByTitle(String title);
+//	public Iterable<Movie> getMovieByTitle(String title);
 }

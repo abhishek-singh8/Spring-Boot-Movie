@@ -2,6 +2,8 @@ package com.stackroute.movieapp.controller;
 
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,10 +21,13 @@ import com.stackroute.movieapp.exception.MovieAlreadyExistsException;
 import com.stackroute.movieapp.exception.MovieNotFoundException;
 import com.stackroute.movieapp.services.MovieService;
 
+
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @RestController
 @RequestMapping("api/v1")
 public class MovieController {
-	
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
     MovieService movieService;
     @Autowired
     MovieController(MovieService movieService){
@@ -32,11 +37,17 @@ public class MovieController {
     @PostMapping("/movie")
     public ResponseEntity<?> saveMovie(@RequestBody Movie movie){
     	try {
+    		    logger.debug("This is a debug message");
+    	        logger.info("This is an info message");
+    	        logger.warn("This is a warn message");
+    	        
+    		
 		    	movieService.saveMovie(movie);
 		    	return new ResponseEntity<Movie> (movie,HttpStatus.CREATED);
 		    }
     	 catch(MovieAlreadyExistsException e){
-             return new ResponseEntity<String>("User Already Exists",HttpStatus.CONFLICT);
+    		 logger.error("This is an MovieAlreadyExistsException error");
+             return new ResponseEntity<String>(e.getMessage(),HttpStatus.CONFLICT);
          }
         
     }
@@ -50,7 +61,7 @@ public class MovieController {
     	   Optional<Movie> movie=movieService.getMovieById(id);
     	   return new ResponseEntity<Optional<Movie>> (movie,HttpStatus.CREATED);
     	}catch(MovieNotFoundException e) {
-    	   return new ResponseEntity<String> ("Movie of this Id not present",HttpStatus.CONFLICT);
+    	   return new ResponseEntity<String> (e.getMessage(),HttpStatus.CONFLICT);
     	}
     }
     @DeleteMapping("/delete/{id}")
@@ -59,7 +70,7 @@ public class MovieController {
     	     movieService.deleteMovie(id);
     	     return new ResponseEntity<String> ("Deleted",HttpStatus.OK);
     	}catch(MovieNotFoundException e) {
-     	   return new ResponseEntity<String> ("Movie of this Id not present for delete",HttpStatus.CONFLICT);
+     	   return new ResponseEntity<String> (e.getMessage(),HttpStatus.CONFLICT);
      	} 
     	
     }
@@ -69,13 +80,13 @@ public class MovieController {
     		Movie movieUpdated=movieService.updateMovie(movie,id);
     		return new ResponseEntity<Movie> (movieUpdated,HttpStatus.CREATED);
     	}catch(MovieNotFoundException e) {
-    	   return new ResponseEntity<String> ("Movie of this Id not present for update",HttpStatus.CONFLICT);
+    	   return new ResponseEntity<String> (e.getMessage(),HttpStatus.CONFLICT);
     	}  
     }
-
-    @GetMapping("/getByTitle/{title}")
-    public ResponseEntity<?> getMovieByTitle(@PathVariable String title){
-    	return new ResponseEntity<Iterable<Movie>> (movieService.getMovieByTitle(title),HttpStatus.OK);
-    }
+//
+//    @GetMapping("/getByTitle/{title}")
+//    public ResponseEntity<?> getMovieByTitle(@PathVariable String title){
+//    	return new ResponseEntity<Iterable<Movie>> (movieService.getMovieByTitle(title),HttpStatus.OK);
+//    }
     
 }

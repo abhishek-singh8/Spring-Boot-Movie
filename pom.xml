@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -16,7 +15,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.0.3.RELEASE</version>
-        <relativePath /> <!-- lookup parent from repository -->
+        <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
     <properties>
@@ -27,20 +26,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>2.6.1</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>2.6.1</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -48,33 +35,22 @@
         </dependency>
 
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-<!--         We don't need to run server again when we do any changes in our source code.-->
-        <dependency>
-		   <groupId>org.springframework.boot</groupId>
-		   <artifactId>spring-boot-devtools</artifactId> 
-		   <scope>runtime</scope>
-		</dependency>
-<!-- 	To check when we have multiple context whether our service is running healthy or not.
- -->		<dependency>
-		   <groupId>org.springframework.boot</groupId>
-		   <artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok.....No need to write additional getter setter in Model Movie -->
-		<dependency>
-		   <groupId>org.projectlombok</groupId>
-		   <artifactId>lombok</artifactId>
-		   <version>1.18.0</version>
-		   <scope>provided</scope>
-		</dependency>
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+			<dependency>
+			   <groupId>org.projectlombok</groupId>
+			   <artifactId>lombok</artifactId>
+			   <version>1.18.0</version>
+			   <scope>provided</scope>
+			</dependency>
+			<dependency>
+				  <groupId>org.slf4j</groupId>
+				  <artifactId>slf4j-api</artifactId>
+				  <version>1.7.25</version>
+			</dependency>
     </dependencies>
 
     <build>

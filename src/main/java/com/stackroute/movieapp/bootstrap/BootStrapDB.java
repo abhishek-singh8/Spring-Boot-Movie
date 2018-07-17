@@ -22,8 +22,8 @@ public class BootStrapDB implements ApplicationListener<ContextRefreshedEvent>{
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		// TODO Auto-generated method stub
-		Movie movie1=new Movie("abcd","9to1","Poster.jpg","2013");
-		movieRepo.save(movie1);
+//		Movie movie1=new Movie("abcd","9to1","Poster.jpg","2013");
+//		movieRepo.save(movie1);
 		
 	}
 

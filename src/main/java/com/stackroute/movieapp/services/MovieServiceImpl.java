@@ -4,6 +4,8 @@ import java.util.Iterator;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
 
@@ -11,6 +13,9 @@ import com.stackroute.movieapp.domain.Movie;
 import com.stackroute.movieapp.exception.MovieAlreadyExistsException;
 import com.stackroute.movieapp.exception.MovieNotFoundException;
 import com.stackroute.movieapp.repositories.MovieRepository;
+import static org.springframework.data.mongodb.core.query.Query.*;
+import static org.springframework.data.mongodb.core.query.Criteria.*;
+import static org.springframework.data.mongodb.core.FindAndModifyOptions.*;
 @Service
 public class MovieServiceImpl implements MovieService {
 
@@ -19,17 +24,22 @@ public class MovieServiceImpl implements MovieService {
 	public MovieServiceImpl (MovieRepository movieRepository) {
 		this.movieRepository=movieRepository;
 	}
-	
+	@Autowired
+	NextSequenceService nextSequenceService;
+
+
 
 	public Movie saveMovie(Movie movie) throws MovieAlreadyExistsException {
 		        Iterable<Movie> movies= getAllMovies();
 		        Iterator<Movie> iterator = movies.iterator();
+		     //   movie.setId(nextSequenceService.getNextSequence("counter"));
 		        while(iterator.hasNext()) {
 		            Movie m = iterator.next();
 		            if(movie.equals(m)) {
 		                throw new MovieAlreadyExistsException("Movie already exists");
 		            }
 		        }
+		        movie.setId(nextSequenceService.getNextSequence("counter"));
 		        return movieRepository.save(movie);
 		    }		
 	
@@ -72,10 +82,10 @@ public class MovieServiceImpl implements MovieService {
     	 
     }
 
-
-	@Override
-	public Iterable<Movie> getMovieByTitle(String title) {
-		return movieRepository.getMovieByTitle(title);
-	}
+//
+//	@Override
+//	public Iterable<Movie> getMovieByTitle(String title) {
+//		return movieRepository.getMovieByTitle(title);
+//	}
 	
 }
