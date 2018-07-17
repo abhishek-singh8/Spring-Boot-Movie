@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.stackroute.movieapp.domain.Movie;
@@ -36,7 +37,10 @@ public class MovieController {
     MovieController(MovieService movieService){
     	this.movieService=movieService;
     }
-    
+    @RequestMapping(value = "/home" , method = RequestMethod.GET)
+	public String displayRestaurant() {
+		return "Hello";
+	}
     @PostMapping("/movie")
     public ResponseEntity<?> saveMovie(@RequestBody Movie movie){
     	try {
