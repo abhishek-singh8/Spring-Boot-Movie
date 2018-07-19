@@ -33,10 +33,10 @@ public class MovieController {
 	Environment env;
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
     MovieService movieService;
-//    @Autowired
-//    MovieController(MovieService movieService){
-//    	this.movieService=movieService;
-//    }
+    @Autowired
+    MovieController(MovieService movieService){
+    	this.movieService=movieService;
+    }
     @RequestMapping(value = "/home" , method = RequestMethod.GET)
 	public String displayRestaurant() {
 		return "Hello";
@@ -67,7 +67,7 @@ public class MovieController {
     public ResponseEntity<?> getMovieById(@PathVariable int id){
     	try {
     	   Optional<Movie> movie=movieService.getMovieById(id);
-    	   return new ResponseEntity<Optional<Movie>> (movie,HttpStatus.CREATED);
+    	   return new ResponseEntity<Optional<Movie>> (movie,HttpStatus.OK);
     	}catch(MovieNotFoundException e) {
     	   return new ResponseEntity<String> (e.getMessage(),HttpStatus.CONFLICT);
     	}
