@@ -8,3 +8,9 @@ logging:
    org.springframework.web: DEBUG
    com.stackroute.movieapp.controller: DEBUG
    org.hibernate: DEBUG
+   
+   
+spring:
+  data:
+      mongodb:
+         uri: mongodb://0.0.0.0:27000/test

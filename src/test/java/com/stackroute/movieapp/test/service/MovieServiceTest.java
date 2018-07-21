@@ -81,9 +81,9 @@ public class MovieServiceTest {
 		Iterable<Movie> movieIterable = movieList;
 
 		when(movieRepo.findAll()).thenReturn(movieIterable);
-		when(movieRepo.save(movie)).thenReturn(movie);
+		when(movieRepo.save(movie1)).thenReturn(movie1);
 		when(nextSequenceService.getNextSequence(anyString())).thenReturn(1);
-		assertEquals(movie, movieServiceImpl.saveMovie(movie));
+		assertEquals(movie1, movieServiceImpl.saveMovie(movie1));
 	}
 
 	@Test(expected = MovieAlreadyExistsException.class)
