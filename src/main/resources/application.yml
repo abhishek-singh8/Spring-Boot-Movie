@@ -13,4 +13,4 @@ logging:
 spring:
   data:
       mongodb:
-         uri: mongodb://0.0.0.0:27000/test
+         uri: mongodb://0.0.0.0:27002/test

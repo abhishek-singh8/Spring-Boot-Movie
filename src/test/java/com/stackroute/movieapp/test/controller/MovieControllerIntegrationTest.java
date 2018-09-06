@@ -1,4 +1,4 @@
-package com.stackroute.movieapp.test.controller;
+/*package com.stackroute.movieapp.test.controller;
 import static org.junit.Assert.*;
 
 import org.junit.After;
@@ -49,11 +49,11 @@ public class MovieControllerIntegrationTest {
 
     }
 
-    /**
+    *//**
      * Testing save movie method
      * 
      * @throws Exception
-     */
+     *//*
     @Test
     public void testSaveNewMovieSuccess() throws Exception {
         ResponseEntity<String> response = restTemplate.exchange(createURLWithPort("/api/v1/movie"), HttpMethod.POST,
@@ -65,4 +65,4 @@ public class MovieControllerIntegrationTest {
         assertEquals(201, response.getStatusCodeValue());
 
     }
-}
+}*/
